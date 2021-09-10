@@ -8,6 +8,16 @@ class Pedal
     private $duracao;
     private $acompanhamento;
 
+    public function __construct($h, $l, $d, $a)
+
+    {
+        $this->setHorario($h);
+        $this->setLocal($l);
+        $this->setDuracao($d);
+        $this->setAcompanhamento($a);
+    }
+
+
     public function setHorario($hora)
     {
         switch ($hora) {
@@ -66,7 +76,7 @@ class Pedal
     }
 
 
-    public function setAcompanhamento($cia)
+    public function setAcompanhamento(string $cia)
     {
         if ($cia === 'S') {
             $this->acompanhamento = true;
