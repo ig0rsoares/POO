@@ -29,7 +29,7 @@ echo "<br>";
 // $conta1->setStatus(false);
 echo $conta1->getSaldo();
 echo "<br>";
-$conta1->depositar(50);
+$conta1->depositar(110);
 echo "<br>";
 echo $conta1->getSaldo();
 echo "<br>";

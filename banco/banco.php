@@ -8,9 +8,6 @@ class ContaBanco
     private $saldo;
     private $status;
 
-
-
-
     public function __construct(string $tp, string $dn)
     {
         $this->zeraNumConta(0);
@@ -103,70 +100,62 @@ class ContaBanco
 
     public function fecharConta()
     {
-        $s = $this->getSaldo();
 
-        if ($s < 0) {
+
+        if ($this->getSaldo() < 0) {
 
             echo "Você tem débitos em aberto, não é possível encerrar a conta";
         }
 
-        if ($s == 0) {
+        if ($this->getSaldo() == 0) {
 
             $this->setStatus(false);
             echo "Conta ecerrada";
         }
 
-        if ($s > 0) {
+        if ($this->getSaldo() > 0) {
             echo "Você tem dinheiro em conta, favor sacar antes de fechar a conta";
         }
     }
 
     public function depositar($valor)
     {
-        $st = $this->getStatus();
-        $sd = $this->getSaldo();
-        if ($st == false) {
+        if ($this->getStatus() == false) {
             echo "Você não pode depositar em uma conta fechada";
         } else {
-
-            $sd = $sd + $valor;
-            $this->setSaldo($sd);
+            $this->setSaldo($this->getSaldo() + $valor);
             echo "Valor depositado com sucesso";
         }
     }
 
     public function sacar($valor)
     {
-        $st = $this->getStatus();
-        $sd = $this->getSaldo();
-        if ($st == false) {
+
+        if ($this->getStatus() == false) {
             echo "Você não pode sacar dinheiro de uma conta fechada";
         }
 
-        if ($valor > $sd) {
+        if ($valor > $this->getSaldo()) {
             echo "Seu saldo é insuficiente para efetuar o saque";
         } else {
 
-            $sd = $sd - $valor;
-            $this->setSaldo($sd);
+            $this->setSaldo($this->getSaldo() - $valor);
             echo "Saque efetuado com sucesso";
         }
     }
 
     public function pagarMensal()
-    { 
-        $tp = $this->getTipo();
-        $sd = $this->getSaldo();
-
-        if ($tp == 'cc') {
-            $sd = $sd - 12;
-            $this->setSaldo($sd);
+    {
+        if ($this->getStatus() == false) {
+            echo "Problemas com a conta";
         }
 
-        if ($tp == 'cp') {
-            $sd = $sd - 20;
-            $this->setSaldo($sd);
+        if ($this->getTipo() == 'cc') {
+            $this->setSaldo($this->getSaldo() - 12);
         }
 
+        if ($this->getTipo() == 'cp') {
+            $this->setSaldo($this->getSaldo() - 20);
+        }
     }
 }
