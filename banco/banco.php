@@ -14,6 +14,8 @@ class ContaBanco
         $this->setStatus(false);
         $this->setSaldo(0);
         $this->abrirConta($tp, $dn);
+        echo "<p>Conta criada com sucesso</p>";
+    
     }
 
     public function zeraNumConta($nc)
@@ -49,7 +51,7 @@ class ContaBanco
                 break;
 
             default:
-                echo "Favor informe cc ou cp";
+                echo "<p>Favor informe cc ou cp</p>";
                 break;
         }
     }
@@ -104,27 +106,27 @@ class ContaBanco
 
         if ($this->getSaldo() < 0) {
 
-            echo "Você tem débitos em aberto, não é possível encerrar a conta";
+            echo "<p>Você tem débitos em aberto, não é possível encerrar a conta</p>";
         }
 
         if ($this->getSaldo() == 0) {
 
             $this->setStatus(false);
-            echo "Conta ecerrada";
+            echo "<p>Conta ecerrada</p>";
         }
 
         if ($this->getSaldo() > 0) {
-            echo "Você tem dinheiro em conta, favor sacar antes de fechar a conta";
+            echo "<p>Você tem dinheiro em conta, favor sacar antes de fechar a conta</p>";
         }
     }
 
     public function depositar($valor)
     {
         if ($this->getStatus() == false) {
-            echo "Você não pode depositar em uma conta fechada";
+            echo "<p>Você não pode depositar em uma conta fechada</p>";
         } else {
             $this->setSaldo($this->getSaldo() + $valor);
-            echo "Valor depositado com sucesso";
+            echo "<p>Valor depositado com sucesso</p>";
         }
     }
 
@@ -132,22 +134,22 @@ class ContaBanco
     {
 
         if ($this->getStatus() == false) {
-            echo "Você não pode sacar dinheiro de uma conta fechada";
+            echo "<p>Você não pode sacar dinheiro de uma conta fechada</p>";
         }
 
         if ($valor > $this->getSaldo()) {
-            echo "Seu saldo é insuficiente para efetuar o saque";
+            echo "<p>Seu saldo é insuficiente para efetuar o saque</p>";
         } else {
 
             $this->setSaldo($this->getSaldo() - $valor);
-            echo "Saque efetuado com sucesso";
+            echo "<p>Saque efetuado com sucesso</p>";
         }
     }
 
     public function pagarMensal()
     {
         if ($this->getStatus() == false) {
-            echo "Problemas com a conta";
+            echo "<p>Problemas com a conta</p>";
         }
 
         if ($this->getTipo() == 'cc') {

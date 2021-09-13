@@ -7,37 +7,25 @@
     <title>Sistema de aberturas de contas</title>
 </head>
 <body>
+<pre>
 <?php
 
 require_once 'banco.php';
 
-$conta1 = new ContaBanco('cp', 'Igor Soares');
+$p1 = new ContaBanco('cc', 'Igor');
+$p2 = new ContaBanco('cp', 'Anny');
 
-// echo $conta1->getSaldo();
-echo "<br>";
-echo $conta1->getDono();
-echo "<br>";
-$conta1->pagarMensal();
-echo $conta1->getSaldo();
-echo "<br>";
-$conta1->sacar(200);
-echo "<br>";
-echo $conta1->getSaldo();
-echo "<br>";
-// $conta1->setSaldo(-10);
-// $conta1->fecharConta();
-// $conta1->setStatus(false);
-echo $conta1->getSaldo();
-echo "<br>";
-$conta1->depositar(110);
-echo "<br>";
-echo $conta1->getSaldo();
-echo "<br>";
-$conta1->pagarMensal();
-echo $conta1->getSaldo();
-echo "<br>";
+$p1->depositar(300);
+$p2->depositar(500);
+$p1->sacar(350);
+$p2->sacar(100);
+$p1->pagarMensal();
+$p2->pagarMensal();
 
 
+
+var_dump($p1);
+var_dump($p2);
 
 
 
@@ -48,5 +36,6 @@ echo "<br>";
 
 
 ?>
+</pre>
 </body>
 </html>
