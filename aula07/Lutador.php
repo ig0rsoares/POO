@@ -14,24 +14,24 @@ private $empates;
 
 public function apresentar()
 {
-    echo "<br>Lutador: " . "$this->getNome";
-    echo "<br>Origem: " . "$this->getNacionalidade";
-    echo "<br>Idade:" . "$this->getIdade " . "anos";
-    echo "<br>Altura:" . "$this->getAltura" . "m de altura";
-    echo "<br>Peso: " . "$this->getPeso ". "KG";
-    echo "<br>Ganhou: " . "$this->getVitorias" . " lutas";
-    echo "<br>Perdeu: " . "$this->getDerrotas" . " lutas";
-    echo "<br>Empatou: " . "$this->getEmpates" . " lutas";
+    echo "<br>Lutador: " . $this->getNome();
+    echo "<br>Origem: " . $this->getNacionalidade();
+    echo "<br>Idade:" . $this->getIdade()  . "anos";
+    echo "<br>Altura:" . $this->getAltura() . "m de altura";
+    echo "<br>Peso: " . $this->getPeso() . "KG";
+    echo "<br>Ganhou: " . $this->getVitorias() . " lutas";
+    echo "<br>Perdeu: " . $this->getDerrotas() . " lutas";
+    echo "<br>Empatou: " . $this->getEmpates() . " lutas";
 
 }
 
 public function status()
 {
-    echo "<br>" . "$this->getNome";
-    echo "<br>É um peso: " . "$this->getCategoria";
-    echo "<br>$this->getVitorias" . " Vitórias";
-    echo "<br>$this->getDerrotas" . " Derrotas";
-    echo "<br>$this->getEmpates" . " Empates";
+    echo $this->getNome();
+    echo "<br>É um peso: " . $this->getCategoria();
+    echo "<br>" . $this->getVitorias() . " Vitórias";
+    echo "<br>" . $this->getDerrotas() . " Derrotas";
+    echo "<br>" . $this->getEmpates() . " Empates";
     
 }
 
@@ -113,7 +113,7 @@ public function getPeso()
 public function setPeso($pe)
 {
    $this->peso = $pe;
-   $this->setCategoria($pe);
+   $this->setCategoria();
    
 }
 
@@ -122,34 +122,33 @@ public function getCategoria()
    return $this->categoria;
 }
 
-public function setCategoria($pe)
+private function setCategoria()
 {
    
-   if ($pe < 52.2) {
+   if ($this->getPeso() < 52.2) {
 
-       $ca = 'Inválido';
+      $this->categoria = 'Inválido';
+   }  
+    elseif ($this->getPeso() <= 70.3) {
 
-    if ($pe >= 52.2 && $pe <= 70.3) {
-
-         $ca = 'Leve';
+      $this->categoria = 'Leve';
     }
-    if ($pe > 70.3 && $pe <= 83.9) {
+    elseif ($this->getPeso() <= 83.9) {
 
-         $ca = 'Médio';
-    }
-
-    if ($pe > 83.9 && $pe <= 120.2) {
-         $ca = 'Pesado';
+      $this->categoria = 'Médio';
     }
 
-    if ($pe >120.2) {
+    elseif ($this->getPeso() <= 120.2) {
+      $this->categoria = 'Pesado';
+    }
+
+    else {
         
-        $ca = 'Inválido';
-    }
-
-    $this->categoria = $ca;
+      $this->categoria = 'Inválido';
 
     }
+
+   
 
 }
     
@@ -186,28 +185,3 @@ public function setEmpates($em)
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-?>
