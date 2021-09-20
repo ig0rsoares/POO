@@ -25,7 +25,7 @@ $c1[1]->setMotor('2.0 TSI');
 $c1[1]->setAno(2019);
 $c1[1]->setCategoria('Hatch');
 
-var_dump($c1);
+echo $c1[0]->modelo;
 
 
 
