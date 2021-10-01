@@ -1,5 +1,7 @@
 <?php
 
+namespace Pessoa;
+
 abstract class Pessoa {
 
 protected $nome, $idade, $sexo, $experiencia;
